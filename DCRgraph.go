@@ -9,6 +9,13 @@ type marking struct {
 
 type DCRgraph struct{
     nodes []string
+
+    conditions_for map[string][]string
+    milestones_for map[string][]string
+    responses_to   map[string][]string
+    excludes_to    map[string][]string
+    includes_to    map[string][]string
+
     markings marking
 }
 
