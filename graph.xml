@@ -1,30 +1,38 @@
-<events>
-    <event id="Fill_out_application">
-    <event id="Reject">
-    <event id="Architect_Review">
-    <event id="Lawyer_Review">
-    <event id="Applicant_informed">
-    <event id="Change_phase_to_abort">
-</events>
-<constraints>
-    <conditions>
-        <condition src="Fill_out_application" dst="Reject">
-        <condition src="Fill_out_application" dst="Architect_Review">
-        <condition src="Fill_out_application" dst="Lawyer_Review">
-        <condition src="Fill_out_application" dst="Applicant_informed">
-        <condition src="Fill_out_application" dst="Change_phase_to_abort">
-    </conditions>
-</constraints>
-<marking>
-    <executed></executed>
-    <included>
-        <event id="Fill_out_application">
-        <event id="Reject">
-        <event id="Architect_Review">
-        <event id="Lawyer_Review">
-        <event id="Applicant_informed">
-        <event id="Change_phase_to_abort">
-    </included>
-    <pending></pending>
-</marking>
-
+<?xml version="1.0" encoding="UTF-8"?>
+<dcr>
+    <events>
+        <event>Fill_out_application</event>
+        <event>Reject</event>
+        <event>Architect_Review</event>
+        <event>Lawyer_Review</event>
+        <event>Applicant_informed</event>
+        <event>Change_phase_to_abort</event>
+    </events>
+    <constraints>
+        <conditions>
+            <condition>Fill_out_application:Reject</condition>
+            <condition>Fill_out_application:Architext_Review</condition>
+            <condition>Fill_out_application:Lawyer_Review</condition>
+            <condition>Fill_out_application:Applicant_Informed</condition>
+            <condition>Fill_out_application:Change_phase_to_abort</condition>
+        </conditions>
+        <responses></responses>
+        <coresponses></coresponses>
+        <excludes></excludes>
+        <includes></includes>
+        <milestones></milestones>
+        <spawns></spawns>
+    </constraints>
+    <markings>
+        <executed></executed>
+        <included>
+            <event>Fill_out_application</event>
+            <event>Reject</event>
+            <event>Architect_Review</event>
+            <event>Lawyer_Review</event>
+            <event>Applicant_informed</event>
+            <event>Change_phase_to_abort</event>
+        </included>
+        <pending></pending>
+    </markings>
+</dcr>
