@@ -3,9 +3,16 @@ package main
 import "fmt"
 import "strconv"
 
+type relations struct {
+    conditions_for map[string][]string
+    milestones_for map[string][]string
+    responses_to   map[string][]string
+    excludes_to    map[string][]string
+    includes_to    map[string][]string
+}
+
 type DCRgraph struct{
     nodes []string
-    relation []string
 }
 
 func create_DCRgraph(number_of_nodes int) DCRgraph {
