@@ -1,0 +1,30 @@
+<events>
+    <event id="Fill_out_application">
+    <event id="Reject">
+    <event id="Architect_Review">
+    <event id="Lawyer_Review">
+    <event id="Applicant_informed">
+    <event id="Change_phase_to_abort">
+</events>
+<constraints>
+    <conditions>
+        <condition src="Fill_out_application" dst="Reject">
+        <condition src="Fill_out_application" dst="Architect_Review">
+        <condition src="Fill_out_application" dst="Lawyer_Review">
+        <condition src="Fill_out_application" dst="Applicant_informed">
+        <condition src="Fill_out_application" dst="Change_phase_to_abort">
+    </conditions>
+</constraints>
+<marking>
+    <executed></executed>
+    <included>
+        <event id="Fill_out_application">
+        <event id="Reject">
+        <event id="Architect_Review">
+        <event id="Lawyer_Review">
+        <event id="Applicant_informed">
+        <event id="Change_phase_to_abort">
+    </included>
+    <pending></pending>
+</marking>
+
