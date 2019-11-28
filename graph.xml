@@ -11,9 +11,9 @@
     <constraints>
         <conditions>
             <condition>Fill_out_application:Reject</condition>
-            <condition>Fill_out_application:Architext_Review</condition>
+            <condition>Fill_out_application:Architect_Review</condition>
             <condition>Fill_out_application:Lawyer_Review</condition>
-            <condition>Fill_out_application:Applicant_Informed</condition>
+            <condition>Fill_out_application:Applicant_informed</condition>
             <condition>Fill_out_application:Change_phase_to_abort</condition>
         </conditions>
         <responses></responses>
@@ -24,7 +24,8 @@
         <spawns></spawns>
     </constraints>
     <markings>
-        <executed></executed>
+        <executed>
+        </executed>
         <included>
             <event>Fill_out_application</event>
             <event>Reject</event>
@@ -33,6 +34,8 @@
             <event>Applicant_informed</event>
             <event>Change_phase_to_abort</event>
         </included>
-        <pending></pending>
+        <pending>
+            <event>Fill_out_application</event>
+        </pending>
     </markings>
 </dcr>
