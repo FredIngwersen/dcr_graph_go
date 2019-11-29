@@ -9,8 +9,8 @@ import (
 )
 
 func get_traces(csv_file string, seperator string) map[string][]string {
-    csv_file, _ := os.Open(csv_file)
-    r := csv.NewReader(csv_file)
+    file,_ := os.Open(csv_file)
+    r := csv.NewReader(file)
 
     traces := make(map[string][]string)
 
@@ -28,7 +28,7 @@ func get_traces(csv_file string, seperator string) map[string][]string {
         event := split[5]
 
         if _, ok := traces[id]; ok {
-            traces[id] = append(event)
+            traces[id] = append(traces[id], event)
         } else {
             traces[id] = []string{event}
         }

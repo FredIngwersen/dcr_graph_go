@@ -5,6 +5,7 @@ import (
     "encoding/xml"
     "os"
     "strings"
+    "strconv"
 )
 
 func create_DCR_graph(file string) DCR_graph{
@@ -46,7 +47,7 @@ func decode_xml(file string) DCR {
         fmt.Println(err)
     }
 
-    fmt.Println("Successfully Opened %s", file)
+    //fmt.Println("Successfully Opened %s", file)
 
     // defer the closing of our xmlFile so that we can parse it later on
     defer xmlFile.Close()
@@ -197,18 +198,16 @@ func execute_trace(graph DCR_graph, trace []string) bool {
     legal_events := enabled_events(graph)
 
     for _, event := range trace {
-        if (string_slice_contains(legal_events, event)) {
+        if (string_slice_contains(legal_events, event)||
+            !string_slice_contains(graph.nodes , event)) {
             graph = execute(graph, event)
-        } else {
-            return false
-        }
+        } else {return false}
         legal_events = enabled_events(graph)
     }
-
     return is_accepting(graph)
 }
 
-func evaluate_traces(graph DCR_graph, traces map[string]string) ([]string, []string) {
+func evaluate_traces(graph DCR_graph, traces map[string][]string, filename string)[][]string {
     satisfied_traces:= make([]string, 0)
     unsatisfied_traces:= make([]string, 0)
 
@@ -221,27 +220,32 @@ func evaluate_traces(graph DCR_graph, traces map[string]string) ([]string, []str
 
         graph = create_DCR_graph(filename)
     }
-
-    return satisfied_traces, unsatisfied_traces
+    result := make([][]string, 2)
+    result[0] = satisfied_traces
+    result[1] = unsatisfied_traces
+    return result
 }
 
 func main(){
-    graphs := []string{ "graphs/custom_format/graph_1",
-                        "graphs/custom_format/graph_2",
-                        "graphs/custom_format/graph_3",
-                        "graphs/custom_format/graph_4"}
+    graphs := []string{ "graphs/custom_format/graph_1.xml",
+                        "graphs/custom_format/graph_2.xml",
+                        "graphs/custom_format/graph_3.xml",
+                        "graphs/custom_format/graph_4.xml"}
 
     csv_file := "log.csv"
     traces := get_traces(csv_file, ";")
-    fmt.Println(traces[0])
-`
-    results := make([][]string, len(graphs))
+    //fmt.Println(traces)
+
+    results := make([][][]string, len(graphs))
 
     for i, filename := range graphs{
         graph := create_DCR_graph(filename)
-        results[i] = make([]string, 2)
-        results[i] = evaluate_traces(graph, traces)
+        results[i] = make([][]string, 2)
+        results[i] = evaluate_traces(graph, traces, filename)
     }
-        `
-
+    var output string
+    for i, result := range results{
+        output += fmt.Sprint("Grahp_" + strconv.Itoa(i+1) +":\n"+ "Correct:" + strconv.Itoa(len(result[0])) +" Incorrect:" + strconv.Itoa(len(result[1])) + "\n")
+    }
+    fmt.Println(output)
 }
