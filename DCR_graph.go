@@ -68,9 +68,9 @@ func string_slice_contains(input []string, target string) bool {
    return false
 }
 
-func get_all_conditions_to(conditions_for Constraint_map, event string) []string{
+func get_all_relations_to(relations_for Constraint_map, event string) []string{
     keys := make([]string, 0)
-    for k, value:= range conditions_for.constraint_map{
+    for k, value:= range relations_for.constraint_map{
         if(string_slice_contains(value, event)){
             keys = append(keys, k)
         }
@@ -118,7 +118,7 @@ func enabled(dcr_graph DCR_graph, event string) bool {
 
     if(!string_slice_contains(dcr_graph.marking.Included, event)){return false}
 
-    keys := get_all_conditions_to(dcr_graph.conditions_for, event)
+    keys := get_all_relations_to(dcr_graph.conditions_for, event)
     incon := retain_all(dcr_graph.marking.Included, keys)
     contains_all := contains_all(dcr_graph.marking.Executed, incon)
     if(!contains_all){return false}
