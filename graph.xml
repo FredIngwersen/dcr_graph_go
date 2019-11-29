@@ -16,10 +16,28 @@
             <condition>Fill_out_application:Applicant_informed</condition>
             <condition>Fill_out_application:Change_phase_to_abort</condition>
         </conditions>
-        <responses></responses>
+        <responses>
+            <response>Fill_out_application:Reject</response>
+            <response>Fill_out_application:Architect_Review</response>
+            <response>Fill_out_application:Lawyer_Review</response>
+            <response>Fill_out_application:Applicant_informed</response>
+            <response>Fill_out_application:Change_phase_to_abort</response>
+        </responses>
         <coresponses></coresponses>
-        <excludes></excludes>
-        <includes></includes>
+        <excludes>
+            <exclude>Fill_out_application:Reject</exclude>
+            <exclude>Fill_out_application:Architect_Review</exclude>
+            <exclude>Fill_out_application:Lawyer_Review</exclude>
+            <exclude>Fill_out_application:Applicant_informed</exclude>
+            <exclude>Fill_out_application:Change_phase_to_abort</exclude>
+        </excludes>
+        <includes>
+            <include>Fill_out_application:Reject</include>
+            <include>Fill_out_application:Architect_Review</include>
+            <include>Fill_out_application:Lawyer_Review</include>
+            <include>Fill_out_application:Applicant_informed</include>
+            <include>Fill_out_application:Change_phase_to_abort</include>
+        </includes>
         <milestones></milestones>
         <spawns></spawns>
     </constraints>
@@ -35,7 +53,6 @@
             <event>Change_phase_to_abort</event>
         </included>
         <pending>
-            <event>Fill_out_application</event>
         </pending>
     </markings>
 </dcr>
