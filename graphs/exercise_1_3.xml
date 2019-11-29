@@ -1,0 +1,89 @@
+<dcrgraph title="exercise_1_3" dataTypesStatus="hide"  filterLevel="-1" zoomLevel="0" formGroupStyle="Normal" formLayoutStyle="Horizontal" graphBG="#EBEBEB">
+    <specification>
+        <resources>
+            <events>
+                <event id="Activity0" >
+                    <custom>
+                        <visualization>
+                            <location xLoc="675" yLoc="250" />
+                            <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc" />
+                        </visualization>
+                        <roles>
+                            <role />
+                        </roles>
+                        <groups>
+                            <group />
+                        </groups>
+                        <phases>
+                            <phase />
+                        </phases>
+                        <eventType></eventType>
+                        <eventScope>private</eventScope>
+                        <eventTypeData></eventTypeData>
+                        <eventDescription></eventDescription>
+                        <purpose></purpose>
+                        <guide></guide>
+                        <level>1</level>
+                        <sequence>1</sequence>
+                        <costs>0</costs>
+                        <eventData></eventData>
+                        <interfaces></interfaces>
+                    </custom>
+                </event>
+            </events>
+            <subProcesses></subProcesses>
+            <distribution></distribution>
+            <labels>
+                <label id="First Payment" />
+            </labels>
+            <labelMappings>
+                <labelMapping eventId="Activity0" labelId="First Payment"/>
+            </labelMappings>
+            <expressions></expressions>
+            <variables></variables>
+            <variableAccesses>
+                <writeAccesses />
+            </variableAccesses>
+            <custom>
+                <keywords></keywords>
+                <roles></roles>
+                <groups></groups>
+                <phases></phases>
+                <eventTypes></eventTypes>
+                <eventParameters></eventParameters>
+                <graphDetails>DCR Graph</graphDetails>
+                <graphFilters>
+                    <filteredGroups></filteredGroups>
+                    <filteredRoles></filteredRoles>
+                    <filteredPhases></filteredPhases>
+                </graphFilters>
+                <hightlighterMarkup id="HLM"></hightlighterMarkup>
+            </custom>
+        </resources>
+        <constraints>
+            <conditions></conditions>
+            <responses></responses>
+            <coresponses></coresponses>
+            <excludes>
+                <exclude sourceId="Activity0" targetId="Activity0" filterLevel="0"  description=""  time=""  groups=""  />
+            </excludes>
+            <includes></includes>
+            <milestones></milestones>
+            <spawns></spawns>
+        </constraints>
+    </specification>
+    <runtime>
+        <custom>
+            <globalMarking></globalMarking>
+        </custom>
+        <marking>
+            <globalStore></globalStore>
+            <executed></executed>
+            <included>
+                <event id="Activity0" />
+            </included>
+            <pendingResponses></pendingResponses>
+        </marking>
+        <custom />
+    </runtime>
+</dcrgraph>
