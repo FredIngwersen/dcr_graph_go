@@ -161,6 +161,7 @@ func execute(dcr_graph DCR_graph, event string) DCR_graph{
 
     result.Included =
         remove_all_excluded(dcr_graph.excludes_to, result.Included, event)
+
     result.Included =
         append(result.Included, dcr_graph.includes_to.constraint_map[event]...)
     dcr_graph.marking = result
@@ -169,6 +170,16 @@ func execute(dcr_graph DCR_graph, event string) DCR_graph{
 
 func get_included_pending(dcr_graph DCR_graph) []string{
 
+    keys := dcr_graph.marking.Included
+    result := retain_all(dcr_graph.marking.Pending, keys)
+    return result
+}
+
+func is_accepting(included_pending []string) bool{
+    if(len(included_pending) == 0){
+        return true
+    }
+    return false
 }
 
 func enabled_test (dcr_graph DCR_graph, events []string){
@@ -185,5 +196,8 @@ func main(){
     fmt.Println("result Pending", graph.marking.Pending)
     fmt.Println("result Executed", graph.marking.Executed)
     fmt.Println("result included", graph.marking.Included)
+
+    fmt.Println("get included pending", get_included_pending(graph))
+    fmt.Println("is accepting", is_accepting(get_included_pending(graph)))
 
 }
