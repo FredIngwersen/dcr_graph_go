@@ -15,6 +15,9 @@ func create_DCR_graph(file string) DCR_graph{
     dcr_graph.nodes = dcr.Events.Names
     dcr_graph.marking = dcr.Markings
     dcr_graph.conditions_for = extract_constraints(dcr.Constraints.Conditions)
+    dcr_graph.responses_to= extract_constraints(dcr.Constraints.Responses)
+    dcr_graph.excludes_to = extract_constraints(dcr.Constraints.Excludes)
+    dcr_graph.includes_to= extract_constraints(dcr.Constraints.Includes )
 
     return *dcr_graph
 }
@@ -112,6 +115,7 @@ func remove_index(s []string, index int) []string {
 	return append(s[:index], s[index+1:]...)
 }
 
+
 func enabled(dcr_graph DCR_graph, event string) bool {
 
     if(!string_slice_contains(dcr_graph.nodes, event)){return true}
@@ -126,15 +130,56 @@ func enabled(dcr_graph DCR_graph, event string) bool {
     return true
 }
 
-func execute(dcr_graph DCR_graph, event string) Marking {
-    if(!string_slice_contains(dcr_graph.nodes, event)){return dcr_graph.marking}
-    if(!enabled(dcr_graph, event)){return  dcr_graph.marking}
-    result := dcr_graph.marking
-    result.Executed = append(result.Executed, event)
-    result.Pending = remove_index(result.Pending, find_index(result.Pending,event))
-
-    fmt.Println(dcr_graph.responses_to.constraint_map[event])
+func remove_all_excluded(exclude Constraint_map,included []string ,event string)[]string{
+    result := included
+    for _, to_exclude := range exclude.constraint_map[event]{
+        index_to_delete := find_index(result,to_exclude)
+        if(index_to_delete != -1){
+            result= remove_index(result, index_to_delete)
+        }
+    }
     return result
+}
+
+func execute(dcr_graph DCR_graph, event string) DCR_graph{
+    if(!string_slice_contains(dcr_graph.nodes, event)) {return dcr_graph}
+    if(!enabled(dcr_graph, event)) {return  dcr_graph}
+
+    result := dcr_graph.marking
+
+    if(!string_slice_contains(result.Executed, event)){
+        result.Executed = append(result.Executed, event)
+    }
+
+    index_to_delete := find_index(result.Pending, event)
+    if(index_to_delete != -1){
+        result.Pending = remove_index(result.Pending, index_to_delete)
+    }
+
+    result.Pending =
+        append(result.Pending, dcr_graph.responses_to.constraint_map[event]...)
+
+    result.Included =
+        remove_all_excluded(dcr_graph.excludes_to, result.Included, event)
+
+    result.Included =
+        append(result.Included, dcr_graph.includes_to.constraint_map[event]...)
+    dcr_graph.marking = result
+    return dcr_graph
+}
+
+func get_included_pending(dcr_graph DCR_graph) []string{
+
+    keys := dcr_graph.marking.Included
+    result := retain_all(dcr_graph.marking.Pending, keys)
+    return result
+}
+
+func is_accepting(included_pending []string) bool{
+    if(len(included_pending) == 0){
+        return true
+    }
+    return false
 }
 
 func enabled_test (dcr_graph DCR_graph, events []string){
@@ -147,7 +192,12 @@ func main(){
     var filename string = "graph.xml"
     graph := create_DCR_graph(filename)
     //enabled_test(graph, graph.nodes)
+    graph = execute(graph, "Fill_out_application")
+    fmt.Println("result Pending", graph.marking.Pending)
+    fmt.Println("result Executed", graph.marking.Executed)
+    fmt.Println("result included", graph.marking.Included)
 
-    result := execute(graph, "Fill_out_application")
-    fmt.Println("\n", result)
+    fmt.Println("get included pending", get_included_pending(graph))
+    fmt.Println("is accepting", is_accepting(get_included_pending(graph)))
+
 }
