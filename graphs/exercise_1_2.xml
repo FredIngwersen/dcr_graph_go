@@ -1,0 +1,180 @@
+<dcrgraph title="exercise_1_2" dataTypesStatus="hide"  filterLevel="-1" zoomLevel="0" formGroupStyle="Normal" formLayoutStyle="Horizontal" graphBG="#EBEBEB">
+    <specification>
+        <resources>
+            <events>
+                <event id="Activity1" >
+                    <custom>
+                        <visualization>
+                            <location xLoc="700" yLoc="175" />
+                            <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc" />
+                        </visualization>
+                        <roles>
+                            <role />
+                        </roles>
+                        <groups>
+                            <group />
+                        </groups>
+                        <phases>
+                            <phase />
+                        </phases>
+                        <eventType></eventType>
+                        <eventScope>private</eventScope>
+                        <eventTypeData></eventTypeData>
+                        <eventDescription>&lt;p&gt;Reject&lt;/p&gt;</eventDescription>
+                        <purpose></purpose>
+                        <guide></guide>
+                        <level>1</level>
+                        <sequence>2</sequence>
+                        <costs>0</costs>
+                        <eventData></eventData>
+                        <interfaces></interfaces>
+                    </custom>
+                </event>
+                <event id="Activity7" type="nesting" >
+                    <custom>
+                        <visualization>
+                            <location xLoc="600" yLoc="375" />
+                            <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc" />
+                        </visualization>
+                        <roles>
+                            <role />
+                        </roles>
+                        <groups>
+                            <group />
+                        </groups>
+                        <phases>
+                            <phase />
+                        </phases>
+                        <eventType></eventType>
+                        <eventScope>private</eventScope>
+                        <eventTypeData></eventTypeData>
+                        <eventDescription></eventDescription>
+                        <purpose></purpose>
+                        <guide></guide>
+                        <level>1</level>
+                        <sequence>8</sequence>
+                        <costs>0</costs>
+                        <eventData></eventData>
+                        <interfaces></interfaces>
+                    </custom>
+                    <event id="Activity2" >
+                        <custom>
+                            <visualization>
+                                <location xLoc="625" yLoc="425" />
+                                <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc" />
+                            </visualization>
+                            <roles>
+                                <role />
+                            </roles>
+                            <groups>
+                                <group />
+                            </groups>
+                            <phases>
+                                <phase />
+                            </phases>
+                            <eventType></eventType>
+                            <eventScope>private</eventScope>
+                            <eventTypeData></eventTypeData>
+                            <eventDescription>&lt;p&gt;Applicant informed&lt;/p&gt;</eventDescription>
+                            <purpose></purpose>
+                            <guide></guide>
+                            <level>1</level>
+                            <sequence>3</sequence>
+                            <costs>0</costs>
+                            <eventData></eventData>
+                            <interfaces></interfaces>
+                        </custom>
+                    </event>
+                    <event id="Activity3" >
+                        <custom>
+                            <visualization>
+                                <location xLoc="750" yLoc="425" />
+                                <colors bg="#f9f7ed" textStroke="#000000" stroke="#cccccc" />
+                            </visualization>
+                            <roles>
+                                <role />
+                            </roles>
+                            <groups>
+                                <group />
+                            </groups>
+                            <phases>
+                                <phase />
+                            </phases>
+                            <eventType></eventType>
+                            <eventScope>private</eventScope>
+                            <eventTypeData></eventTypeData>
+                            <eventDescription>Change phase to Abort</eventDescription>
+                            <purpose></purpose>
+                            <guide></guide>
+                            <level>1</level>
+                            <sequence>4</sequence>
+                            <costs>0</costs>
+                            <eventData></eventData>
+                            <interfaces></interfaces>
+                        </custom>
+                    </event>
+                </event>
+            </events>
+            <subProcesses></subProcesses>
+            <distribution></distribution>
+            <labels>
+                <label id="Reject" />
+                <label id="Applicant informed" />
+                <label id="Change phase to Abort" />
+            </labels>
+            <labelMappings>
+                <labelMapping eventId="Activity1" labelId="Reject"/>
+                <labelMapping eventId="Activity2" labelId="Applicant informed"/>
+                <labelMapping eventId="Activity3" labelId="Change phase to Abort"/>
+            </labelMappings>
+            <expressions></expressions>
+            <variables></variables>
+            <variableAccesses>
+                <writeAccesses />
+            </variableAccesses>
+            <custom>
+                <keywords></keywords>
+                <roles></roles>
+                <groups></groups>
+                <phases></phases>
+                <eventTypes></eventTypes>
+                <eventParameters></eventParameters>
+                <graphDetails>Fill out application should always be the first event of the caseReject should always eventually be followed by Applicant informed and Change phase to AbortFirst payment should only occur once.Lawyer Review and Architect Review should never occur together.</graphDetails>
+                <graphFilters>
+                    <filteredGroups></filteredGroups>
+                    <filteredRoles></filteredRoles>
+                    <filteredPhases></filteredPhases>
+                </graphFilters>
+                <hightlighterMarkup id="HLM">&lt;div id=&quot;highLighterTextContainer&quot; class=&quot;selectable&quot; data-role=&quot;tooltip&quot; style=&quot;background-color: transparent; height: 830px;&quot;&gt;&lt;div class=&quot;col-lg-9 col-md-9 col-xs-9 main&quot; id=&quot;main&quot; style=&quot;font-size: 13px; background-color: transparent; width: 1422.75px; white-space: normal; height: 934px;&quot;&gt;&lt;div id=&quot;highLighterTextContainer&quot; class=&quot;selectable&quot; data-role=&quot;tooltip&quot; style=&quot;background-color: transparent; height: 830px;&quot;&gt;&lt;span class=&quot;marked-activity  marked-item&quot; data-item-id=&quot;Activity1&quot; data-item-type=&quot;activity&quot; type=&quot;SPAN&quot; style=&quot;font-size: 13px;&quot;&gt;&lt;span class=&quot;marked-activity  marked-item&quot; data-item-id=&quot;Activity0&quot; data-item-type=&quot;activity&quot;&gt;Fill out application&lt;/span&gt;&lt;/span&gt; should always be the first event of the case&lt;br&gt;&lt;span class=&quot;marked-activity  marked-item&quot; data-item-id=&quot;Activity2&quot; data-item-type=&quot;activity&quot; type=&quot;SPAN&quot; style=&quot;font-size: 13px;&quot;&gt;&lt;span class=&quot;marked-activity  marked-item&quot; data-item-id=&quot;Activity1&quot; data-item-type=&quot;activity&quot;&gt;Reject&lt;/span&gt; &lt;/span&gt;should always eventually be followed by &lt;span class=&quot;marked-activity  marked-item&quot; data-item-id=&quot;Activity3&quot; data-item-type=&quot;activity&quot; type=&quot;SPAN&quot; style=&quot;font-size: 13px;&quot;&gt;&lt;span class=&quot;marked-activity  marked-item&quot; data-item-id=&quot;Activity2&quot; data-item-type=&quot;activity&quot;&gt;Applicant informed&lt;/span&gt;&lt;/span&gt; and &lt;span class=&quot;marked-activity  marked-item&quot; data-item-id=&quot;Activity4&quot; data-item-type=&quot;activity&quot; type=&quot;SPAN&quot; style=&quot;font-size: 13px;&quot;&gt;&lt;span class=&quot;marked-activity  marked-item&quot; data-item-id=&quot;Activity3&quot; data-item-type=&quot;activity&quot;&gt;Change phase to Abort&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;marked-activity  marked-item focusText itemClicked&quot; data-item-id=&quot;Activity5&quot; data-item-type=&quot;activity&quot; type=&quot;SPAN&quot; style=&quot;font-size: 13px;&quot;&gt;&lt;span class=&quot;marked-activity  marked-item&quot; data-item-id=&quot;Activity4&quot; data-item-type=&quot;activity&quot;&gt;First payment&lt;/span&gt;&lt;/span&gt; should only occur once.&lt;br&gt;&lt;span class=&quot;marked-activity  marked-item&quot; data-item-id=&quot;Activity6&quot; data-item-type=&quot;activity&quot; type=&quot;SPAN&quot; style=&quot;font-size: 13px;&quot;&gt;&lt;span class=&quot;marked-activity  marked-item focusText&quot; data-item-id=&quot;Activity5&quot; data-item-type=&quot;activity&quot;&gt;Lawyer Review&lt;/span&gt;&lt;/span&gt; and Architect Review should never occur together.&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;footer id=&quot;highlighterFooter&quot; style=&quot;font-size: 13px; background-color: rgb(255, 255, 255); width: 1422.75px; white-space: normal;&quot;&gt;&lt;div class=&quot;footer-content&quot; style=&quot;font-size: 13px; background-color: rgb(247, 247, 247);&quot;&gt;&lt;/div&gt;&lt;/footer&gt;&lt;div id=&quot;footer&quot; style=&quot;font-size: 13px; background-color: rgb(255, 255, 255); width: 1899px; white-space: normal;&quot;&gt;&lt;div class=&quot;p10&quot; style=&quot;font-size: 13px; background-color: transparent;&quot;&gt;&lt;/div&gt;&lt;/div&gt;</hightlighterMarkup>
+            </custom>
+        </resources>
+        <constraints>
+            <conditions></conditions>
+            <responses>
+                <response sourceId="Activity1" targetId="Activity7" filterLevel="0"  description=""  time=""  groups=""  />
+            </responses>
+            <coresponses></coresponses>
+            <excludes></excludes>
+            <includes></includes>
+            <milestones></milestones>
+            <spawns></spawns>
+        </constraints>
+    </specification>
+    <runtime>
+        <custom>
+            <globalMarking></globalMarking>
+        </custom>
+        <marking>
+            <globalStore></globalStore>
+            <executed></executed>
+            <included>
+                <event id="Activity1" />
+                <event id="Activity2" />
+                <event id="Activity3" />
+                <event id="Activity7" />
+            </included>
+            <pendingResponses></pendingResponses>
+        </marking>
+        <custom />
+    </runtime>
+</dcrgraph>
