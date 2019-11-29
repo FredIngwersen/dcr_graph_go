@@ -1,20 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dcr>
     <events>
-        <event>Fill_out_application</event>
+        <event>Change phase to Complete</event>
+        <event>Register Decision</event>
+        <event>Lawyer Review</event>
+        <event>Screen application</event>
+        <event>Fill out application</event>
+        <event>Change phase to Review</event>
+        <event>Approve</event>
+        <event>Execute pre-decision</event>
+        <event>Approved - to board</event>
+        <event>Change Phase to End Report</event>
+        <event>First payment</event>
+        <event>Change Phase to Payout</event>
         <event>Reject</event>
-        <event>Architect_Review</event>
-        <event>Lawyer_Review</event>
-        <event>Applicant_informed</event>
-        <event>Change_phase_to_abort</event>
+        <event>Execute abandon</event>
+        <event>Applicant justifies relevance</event>
+        <event>Inform application of board review</event>
+        <event>Change phase to Preparation</event>
+        <event>Round ends</event>
+        <event>Account number changed</event>
+        <event>Change phase to Abandon</event>
+        <event>Review</event>
+        <event>Change phase to Abort</event>
+        <event>Receive end report</event>
+        <event>Inform applicant of approval</event>
+        <event>Screening reject</event>
+        <event>Architect Review</event>
+        <event>Payment completed</event>
+        <event>Change phase to Board meeting</event>
+        <event>Applicant informed</event>
+        <event>Round approved</event>
+        <event>Set to Pre-approved</event>
     </events>
     <constraints>
         <conditions>
-            <condition>Fill_out_application:Reject</condition>
-            <condition>Fill_out_application:Architect_Review</condition>
-            <condition>Fill_out_application:Lawyer_Review</condition>
-            <condition>Fill_out_application:Applicant_informed</condition>
-            <condition>Fill_out_application:Change_phase_to_abort</condition>
+            <condition>Fill out application:Change phase to Complete</condition>
+            <condition>Fill out application:Register Decision</condition>
+            <condition>Fill out application:Lawyer Review</condition>
+            <condition>Fill out application:Screen application</condition>
+            <condition>Fill out application:Change phase to Review</condition>
+            <condition>Fill out application:Approve</condition>
+            <condition>Fill out application:Execute pre-decision</condition>
+            <condition>Fill out application:Approved - to board</condition>
+            <condition>Fill out application:Change Phase to End Report</condition>
+            <condition>Fill out application:First payment</condition>
+            <condition>Fill out application:Change Phase to Payout</condition>
+            <condition>Fill out application:Reject</condition>
+            <condition>Fill out application:Execute abandon</condition>
+            <condition>Fill out application:Applicant justifies relevance</condition>
+            <condition>Fill out application:Inform application of board review</condition>
+            <condition>Fill out application:Change phase to Preparation</condition>
+            <condition>Fill out application:Round ends</condition>
+            <condition>Fill out application:Account number changed</condition>
+            <condition>Fill out application:Change phase to Abandon</condition>
+            <condition>Fill out application:Review</condition>
+            <condition>Fill out application:Change phase to Abort</condition>
+            <condition>Fill out application:Receive end report</condition>
+            <condition>Fill out application:Inform applicant of approval</condition>
+            <condition>Fill out application:Screening reject</condition>
+            <condition>Fill out application:Architect Review</condition>
+            <condition>Fill out application:Payment completed</condition>
+            <condition>Fill out application:Change phase to Board meeting</condition>
+            <condition>Fill out application:Applicant informed</condition>
+            <condition>Fill out application:Round approved</condition>
+            <condition>Fill out application:Set to Pre-approved</condition>
         </conditions>
         <responses></responses>
         <coresponses></coresponses>
@@ -27,15 +77,39 @@
         <executed>
         </executed>
         <included>
-            <event>Fill_out_application</event>
+            <event>Change phase to Complete</event>
+            <event>Register Decision</event>
+            <event>Lawyer Review</event>
+            <event>Screen application</event>
+            <event>Fill out application</event>
+            <event>Change phase to Review</event>
+            <event>Approve</event>
+            <event>Execute pre-decision</event>
+            <event>Approved - to board</event>
+            <event>Change Phase to End Report</event>
+            <event>First payment</event>
+            <event>Change Phase to Payout</event>
             <event>Reject</event>
-            <event>Architect_Review</event>
-            <event>Lawyer_Review</event>
-            <event>Applicant_informed</event>
-            <event>Change_phase_to_abort</event>
+            <event>Execute abandon</event>
+            <event>Applicant justifies relevance</event>
+            <event>Inform application of board review</event>
+            <event>Change phase to Preparation</event>
+            <event>Round ends</event>
+            <event>Account number changed</event>
+            <event>Change phase to Abandon</event>
+            <event>Review</event>
+            <event>Change phase to Abort</event>
+            <event>Receive end report</event>
+            <event>Inform applicant of approval</event>
+            <event>Screening reject</event>
+            <event>Architect Review</event>
+            <event>Payment completed</event>
+            <event>Change phase to Board meeting</event>
+            <event>Applicant informed</event>
+            <event>Round approved</event>
+            <event>Set to Pre-approved</event>
         </included>
         <pending>
-            <event>Fill_out_application</event>
         </pending>
     </markings>
 </dcr>

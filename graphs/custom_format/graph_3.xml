@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dcr>
     <events>
-        <event>Fill_out_application</event>
-        <event>Reject</event>
-        <event>Architect_Review</event>
-        <event>Lawyer_Review</event>
-        <event>Applicant_informed</event>
-        <event>Change_phase_to_abort</event>
+        <event>First Payment</event>
     </events>
     <constraints>
         <conditions>
-            <condition>Fill_out_application:Reject</condition>
-            <condition>Fill_out_application:Architect_Review</condition>
-            <condition>Fill_out_application:Lawyer_Review</condition>
-            <condition>Fill_out_application:Applicant_informed</condition>
-            <condition>Fill_out_application:Change_phase_to_abort</condition>
         </conditions>
         <responses></responses>
         <coresponses></coresponses>
-        <excludes></excludes>
+        <excludes>
+            <exclude>First Payment:First Payment</exclude>
+        </excludes>
         <includes></includes>
         <milestones></milestones>
         <spawns></spawns>
@@ -27,15 +19,9 @@
         <executed>
         </executed>
         <included>
-            <event>Fill_out_application</event>
-            <event>Reject</event>
-            <event>Architect_Review</event>
-            <event>Lawyer_Review</event>
-            <event>Applicant_informed</event>
-            <event>Change_phase_to_abort</event>
+            <event>First Payment</event>
         </included>
         <pending>
-            <event>Fill_out_application</event>
         </pending>
     </markings>
 </dcr>
