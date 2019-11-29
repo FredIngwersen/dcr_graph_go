@@ -59,8 +59,95 @@ func decode_xml(file string) DCR {
     return *dcr
 }
 
+func string_slice_contains(input []string, target string) bool {
+   for _, a := range input {
+      if a == target {
+         return true
+      }
+   }
+   return false
+}
+
+func get_all_conditions_to(conditions_for Constraint_map, event string) []string{
+    keys := make([]string, 0)
+    for k, value:= range conditions_for.constraint_map{
+        if(string_slice_contains(value, event)){
+            keys = append(keys, k)
+        }
+    }
+    return keys
+}
+
+func retain_all(included []string, keys []string) []string{
+    incon := make([]string, 0)
+    for _,con := range keys{
+        if(string_slice_contains(included, con)){
+            incon = append(incon,con)
+        }
+    }
+    return incon
+}
+
+func contains_all(executed []string, incon []string) bool{
+    for _, con := range incon{
+        if(!string_slice_contains(executed, con)){
+            return false
+        }
+    }
+    return true
+}
+
+func find_index(strings []string,  event string) int {
+    i := 0
+    for _, s := range strings{
+        if(s == event){
+            return i
+        }
+        i++
+    }
+    return -1
+}
+
+func remove_index(s []string, index int) []string {
+	return append(s[:index], s[index+1:]...)
+}
+
+func enabled(dcr_graph DCR_graph, event string) bool {
+
+    if(!string_slice_contains(dcr_graph.nodes, event)){return true}
+
+    if(!string_slice_contains(dcr_graph.marking.Included, event)){return false}
+
+    keys := get_all_conditions_to(dcr_graph.conditions_for, event)
+    incon := retain_all(dcr_graph.marking.Included, keys)
+    contains_all := contains_all(dcr_graph.marking.Executed, incon)
+    if(!contains_all){return false}
+
+    return true
+}
+
+func execute(dcr_graph DCR_graph, event string) Marking {
+    if(!string_slice_contains(dcr_graph.nodes, event)){return dcr_graph.marking}
+    if(!enabled(dcr_graph, event)){return  dcr_graph.marking}
+    result := dcr_graph.marking
+    result.Executed = append(result.Executed, event)
+    result.Pending = remove_index(result.Pending, find_index(result.Pending,event))
+
+    fmt.Println(dcr_graph.responses_to.constraint_map[event])
+    return result
+}
+
+func enabled_test (dcr_graph DCR_graph, events []string){
+    for _, event := range events{
+        fmt.Println(event, enabled(dcr_graph,event))
+    }
+}
+
 func main(){
     var filename string = "graph.xml"
     graph := create_DCR_graph(filename)
-    fmt.Println(graph.conditions_for)
+    //enabled_test(graph, graph.nodes)
+
+    result := execute(graph, "Fill_out_application")
+    fmt.Println("\n", result)
 }
