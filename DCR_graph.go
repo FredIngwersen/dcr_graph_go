@@ -9,17 +9,17 @@ import (
 
 func create_DCR_graph(file string) DCR_graph{
 
-    dcr_graph := new(DCR_graph)
+    graph := new(DCR_graph)
     dcr := decode_xml(file)
 
-    dcr_graph.nodes = dcr.Events.Names
-    dcr_graph.marking = dcr.Markings
-    dcr_graph.conditions_for = extract_constraints(dcr.Constraints.Conditions)
-    dcr_graph.responses_to= extract_constraints(dcr.Constraints.Responses)
-    dcr_graph.excludes_to = extract_constraints(dcr.Constraints.Excludes)
-    dcr_graph.includes_to= extract_constraints(dcr.Constraints.Includes )
+    graph.nodes = dcr.Events.Names
+    graph.marking = dcr.Markings
+    graph.conditions_for = extract_constraints(dcr.Constraints.Conditions)
+    graph.responses_to= extract_constraints(dcr.Constraints.Responses)
+    graph.excludes_to = extract_constraints(dcr.Constraints.Excludes)
+    graph.includes_to= extract_constraints(dcr.Constraints.Includes )
 
-    return *dcr_graph
+    return *graph
 }
 
 func extract_constraints(constraints []string) Constraint_map{
@@ -116,15 +116,15 @@ func remove_index(s []string, index int) []string {
 }
 
 
-func enabled(dcr_graph DCR_graph, event string) bool {
+func enabled(graph DCR_graph, event string) bool {
 
-    if(!string_slice_contains(dcr_graph.nodes, event)){return true}
+    if(!string_slice_contains(graph.nodes, event)){return true}
 
-    if(!string_slice_contains(dcr_graph.marking.Included, event)){return false}
+    if(!string_slice_contains(graph.marking.Included, event)){return false}
 
-    keys := get_all_relations_to(dcr_graph.conditions_for, event)
-    incon := retain_all(dcr_graph.marking.Included, keys)
-    contains_all := contains_all(dcr_graph.marking.Executed, incon)
+    keys := get_all_relations_to(graph.conditions_for, event)
+    incon := retain_all(graph.marking.Included, keys)
+    contains_all := contains_all(graph.marking.Executed, incon)
     if(!contains_all){return false}
 
     return true
@@ -141,11 +141,11 @@ func remove_all_excluded(exclude Constraint_map,included []string ,event string)
     return result
 }
 
-func execute(dcr_graph DCR_graph, event string) DCR_graph{
-    if(!string_slice_contains(dcr_graph.nodes, event)) {return dcr_graph}
-    if(!enabled(dcr_graph, event)) {return  dcr_graph}
+func execute(graph DCR_graph, event string) DCR_graph{
+    if(!string_slice_contains(graph.nodes, event)) {return graph}
+    if(!enabled(graph, event)) {return  graph}
 
-    result := dcr_graph.marking
+    result := graph.marking
 
     if(!string_slice_contains(result.Executed, event)){
         result.Executed = append(result.Executed, event)
@@ -157,47 +157,91 @@ func execute(dcr_graph DCR_graph, event string) DCR_graph{
     }
 
     result.Pending =
-        append(result.Pending, dcr_graph.responses_to.constraint_map[event]...)
+        append(result.Pending, graph.responses_to.constraint_map[event]...)
 
     result.Included =
-        remove_all_excluded(dcr_graph.excludes_to, result.Included, event)
+        remove_all_excluded(graph.excludes_to, result.Included, event)
 
     result.Included =
-        append(result.Included, dcr_graph.includes_to.constraint_map[event]...)
-    dcr_graph.marking = result
-    return dcr_graph
+        append(result.Included, graph.includes_to.constraint_map[event]...)
+    graph.marking = result
+    return graph
 }
 
-func get_included_pending(dcr_graph DCR_graph) []string{
+func get_included_pending(graph DCR_graph) []string{
 
-    keys := dcr_graph.marking.Included
-    result := retain_all(dcr_graph.marking.Pending, keys)
+    keys := graph.marking.Included
+    result := retain_all(graph.marking.Pending, keys)
     return result
 }
 
-func is_accepting(included_pending []string) bool{
-    if(len(included_pending) == 0){
+func is_accepting(graph DCR_graph) bool {
+    if(len(get_included_pending(graph)) == 0){
         return true
     }
     return false
 }
 
-func enabled_test (dcr_graph DCR_graph, events []string){
-    for _, event := range events{
-        fmt.Println(event, enabled(dcr_graph,event))
+func enabled_events(graph DCR_graph) []string {
+    legal_events := make([]string, 0)
+
+    for _, event := range graph.nodes {
+        if (enabled(graph, event)) {
+            legal_events = append(legal_events, event)
+        }
     }
+    return legal_events
+}
+
+func execute_trace(graph DCR_graph, trace []string) bool {
+    legal_events := enabled_events(graph)
+
+    for _, event := range trace {
+        if (string_slice_contains(legal_events, event)) {
+            graph = execute(graph, event)
+        } else {
+            return false
+        }
+        legal_events = enabled_events(graph)
+    }
+
+    return is_accepting(graph)
+}
+
+func evaluate_traces(graph DCR_graph, traces map[string]string) ([]string, []string) {
+    satisfied_traces:= make([]string, 0)
+    unsatisfied_traces:= make([]string, 0)
+
+    for id, trace := range traces  {
+        if (execute_trace(graph, trace)) {
+            satisfied_traces = append(satisfied_traces, id)
+        } else {
+            unsatisfied_traces = append(unsatisfied_traces, id)
+        }
+
+        graph = create_DCR_graph(filename)
+    }
+
+    return satisfied_traces, unsatisfied_traces
 }
 
 func main(){
-    var filename string = "graph.xml"
-    graph := create_DCR_graph(filename)
-    //enabled_test(graph, graph.nodes)
-    graph = execute(graph, "Fill_out_application")
-    fmt.Println("result Pending", graph.marking.Pending)
-    fmt.Println("result Executed", graph.marking.Executed)
-    fmt.Println("result included", graph.marking.Included)
+    graphs := []string{ "graphs/custom_format/graph_1",
+                        "graphs/custom_format/graph_2",
+                        "graphs/custom_format/graph_3",
+                        "graphs/custom_format/graph_4"}
 
-    fmt.Println("get included pending", get_included_pending(graph))
-    fmt.Println("is accepting", is_accepting(get_included_pending(graph)))
+    csv_file := "log.csv"
+    traces := get_traces(csv_file, ";")
+    fmt.Println(traces[0])
+`
+    results := make([][]string, len(graphs))
+
+    for i, filename := range graphs{
+        graph := create_DCR_graph(filename)
+        results[i] = make([]string, 2)
+        results[i] = evaluate_traces(graph, traces)
+    }
+        `
 
 }
