@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.10.28)  30 NOV 2019 10:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.10.28)  30 NOV 2019 11:16
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1444,18 +1444,37 @@ Package pdftex.def Info: frontpage/report.pdf , page1 used on input line 41.
  [1
 
  <./frontpage/report.pdf{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}>] (
-./sections/model_description.tex)
-(./sections/DCR_engine.tex) (./sections/proof.tex)
-runsystem(rm _minted-master/default-pyg-prefix.pygstyle)...executed.
+./sections/model_description.tex
+<images/pattern_1.png, id=53, 1038.88126pt x 838.13126pt>
+File: images/pattern_1.png Graphic file (type png)
+<use images/pattern_1.png>
+Package pdftex.def Info: images/pattern_1.png  used on input line 8.
+(pdftex.def)             Requested size: 426.79135pt x 344.31384pt.
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.11 \newpage
+              [1
 
-runsystem(rm _minted-master/default.pygstyle)...executed.
-
-runsystem(rm _minted-master/48B0F24DBCC3BD6E13E71A348E87FEEE03E488431D48F588D02
-02E3DDF50EBBA.pygtex)...executed.
-
-runsystem(rm _minted-master/7778F1126AADF0743B4709DC4D8BB54803E488431D48F588D02
-02E3DDF50EBBA.pygtex)...executed.
-
+ <./images/pattern_1.png>]
+<images/pattern_2.png, id=64, 286.06876pt x 411.5375pt>
+File: images/pattern_2.png Graphic file (type png)
+<use images/pattern_2.png>
+Package pdftex.def Info: images/pattern_2.png  used on input line 19.
+(pdftex.def)             Requested size: 213.39568pt x 306.99457pt.
+<images/pattern_3.png, id=65, 124.465pt x 150.5625pt>
+File: images/pattern_3.png Graphic file (type png)
+<use images/pattern_3.png>
+Package pdftex.def Info: images/pattern_3.png  used on input line 25.
+(pdftex.def)             Requested size: 106.69783pt x 129.07227pt.
+<images/pattern_4.png, id=66, 260.975pt x 135.50626pt>
+File: images/pattern_4.png Graphic file (type png)
+<use images/pattern_4.png>
+Package pdftex.def Info: images/pattern_4.png  used on input line 31.
+(pdftex.def)             Requested size: 213.39568pt x 110.8036pt.
+ [2 <./images/pattern_2.png> <./images/pattern_3.png>]) (./sections/DCR_engine.
+tex) (./sections/proof.tex) [3 <./images/pattern_4.png>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 52.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 52.
  (./master.aux)
@@ -1466,19 +1485,22 @@ Package rerunfilecheck Info: File `master.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 52.
  ) 
 Here is how much of TeX's memory you used:
- 23736 strings out of 492982
- 437557 string characters out of 6134895
- 552228 words of memory out of 5000000
- 26873 multiletter control sequences out of 15000+600000
- 4403 words of font info for 15 fonts, out of 8000000 for 9000
+ 23766 strings out of 492982
+ 437984 string characters out of 6134895
+ 553033 words of memory out of 5000000
+ 26893 multiletter control sequences out of 15000+600000
+ 7486 words of font info for 19 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,18n,54p,970b,473s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/typ
-e1/public/lm/lmr17.pfb>
-Output written on master.pdf (1 page, 81287 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/
+fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.p
+fb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf
+/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/
+cm-super/sfrm1000.pfb>
+Output written on master.pdf (4 pages, 173710 bytes).
 PDF statistics:
- 59 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
- 2 named destinations out of 1000 (max. 500000)
- 33 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 99 PDF objects out of 1000 (max. 8388607)
+ 66 compressed objects within 1 object stream
+ 9 named destinations out of 1000 (max. 500000)
+ 53 words of extra memory for PDF output out of 10000 (max. 10000000)
 
