@@ -1,15 +1,15 @@
-.PHONY: standard build run all
+.PHONY: standard build run test all
 
 CC=go
 
 standard: run
 
 build:
-	go build DCR_graph.go DCR_structs.go get_log.go
+	go build main.go DCR_interface.go DCR_structs.go helper_functions.go get_log.go
 
 run:
-	go build DCR_graph.go DCR_structs.go get_log.go
-	./DCR_graph
+	go build main.go DCR_functions.go DCR_interface.go DCR_structs.go helper_functions.go get_log.go
+	./main
 test:
 	go build test.go get_log.go
 	./test

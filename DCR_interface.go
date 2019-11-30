@@ -48,7 +48,7 @@ func (graph DCR_graph) Execute(event string) Marking {
 	}
 
     for _, event := range graph.responses_to.constraint_map[event]{
-        if(!string_slice_contains(result.Pending, event)){
+        if(!string_slice_contains(graph.marking.Pending, event)){
             graph.marking.Pending = append(graph.marking.Pending, event)
         }
     }
