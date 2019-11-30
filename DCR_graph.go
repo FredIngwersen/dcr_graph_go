@@ -1,4 +1,4 @@
-package main
+//package main
 
 import (
     "fmt"
@@ -13,6 +13,7 @@ func create_DCR_graph(file string) DCR_graph{
     graph := new(DCR_graph)
     dcr := decode_xml(file)
 
+    graph.filename = file
     graph.nodes = dcr.Events.Names
     graph.marking = dcr.Markings
     graph.conditions_for = extract_constraints(dcr.Constraints.Conditions)
@@ -40,7 +41,7 @@ func extract_constraints(constraints []string) Constraint_map{
     return *c_map
 }
 
-func decode_xml(file string) DCR {
+func decode_xml(file string) DCR_XML {
     xmlFile, err := os.Open(file)
 
     if err != nil {
@@ -52,7 +53,7 @@ func decode_xml(file string) DCR {
     // defer the closing of our xmlFile so that we can parse it later on
     defer xmlFile.Close()
 
-    dcr := new(DCR)
+    dcr := new(DCR_XML)
 
     decoded := xml.NewDecoder(xmlFile)
     err = decoded.Decode(dcr)
