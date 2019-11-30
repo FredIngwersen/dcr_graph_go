@@ -47,8 +47,11 @@ func (graph DCR_graph) Execute(event string) Marking {
 		graph.marking.Pending = remove_index(graph.marking.Pending, index_to_delete)
 	}
 
-	graph.marking.Pending =
-		append(graph.marking.Pending, graph.responses_to.constraint_map[event]...)
+    for _, event := range graph.responses_to.constraint_map[event]{
+        if(!string_slice_contains(graph.marking.Pending, event)){
+            graph.marking.Pending = append(graph.marking.Pending, event)
+        }
+    }
 
 	graph.marking.Included =
 		remove_all_excluded(graph.excludes_to, graph.marking.Included, event)

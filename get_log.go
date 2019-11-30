@@ -23,9 +23,10 @@ func get_traces(csv_file string, seperator string) map[string][]string {
 			log.Fatal(err)
 		}
 
-		split := strings.Split(record[0], seperator)
-		id := split[0]
-		event := split[5]
+        split := strings.Split(record[0], seperator)
+        id := split[0]
+        event := split[5]
+        if(id == "ID"){continue}
 
 		if _, ok := traces[id]; ok {
 			traces[id] = append(traces[id], event)

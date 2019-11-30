@@ -11,7 +11,8 @@ func main() {
 		"graphs/custom_format/graph_3.xml",
 		"graphs/custom_format/graph_4.xml"}
 
-	csv_file := "log.csv"
+	log_path := "logs/"
+	csv_file := log_path + "log.csv"
 	traces := get_traces(csv_file, ";")
 
 	results := make([][][]string, len(graphs))
