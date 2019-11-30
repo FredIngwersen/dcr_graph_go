@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{private} \PYG{k}{void} \PYG{n+nf}{categorizeData}\PYG{p}{()} \PYG{p}{\PYGZob{}}
+
+    \PYG{k+kt}{string} \PYG{n}{type} \PYG{p}{=} \PYG{l+s}{\PYGZdq{}level\PYGZdq{}}\PYG{p}{;}
+
+    \PYG{c+c1}{// The following for each loop and switch statement}
+    \PYG{c+c1}{// will iterate the files and categorize them line}
+    \PYG{c+c1}{// by line to make handling the data easier}
+    \PYG{k}{foreach} \PYG{p}{(}\PYG{k+kt}{var} \PYG{n}{line} \PYG{k}{in} \PYG{n}{fileContent}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+
+        \PYG{k}{switch} \PYG{p}{(}\PYG{n}{type}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{k}{case} \PYG{l+s}{\PYGZdq{}level\PYGZdq{}}\PYG{p}{:}
+                \PYG{k}{if} \PYG{p}{(!(}\PYG{k+kt}{string}\PYG{p}{.}\PYG{n}{IsNullOrWhiteSpace}\PYG{p}{(}\PYG{n}{line}\PYG{p}{)))} \PYG{p}{\PYGZob{}}
+                    \PYG{n}{levelLines}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{line}\PYG{p}{);}
+                \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{k+kt}{string}\PYG{p}{.}\PYG{n}{IsNullOrWhiteSpace}\PYG{p}{(}\PYG{n}{line}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+                    \PYG{n}{type} \PYG{p}{=} \PYG{l+s}{\PYGZdq{}meta\PYGZdq{}}\PYG{p}{;}
+                \PYG{p}{\PYGZcb{}}
+                \PYG{k}{break}\PYG{p}{;}
+
+            \PYG{k}{case} \PYG{l+s}{\PYGZdq{}meta\PYGZdq{}}\PYG{p}{:}
+                \PYG{k}{if} \PYG{p}{(!(}\PYG{k+kt}{string}\PYG{p}{.}\PYG{n}{IsNullOrWhiteSpace}\PYG{p}{(}\PYG{n}{line}\PYG{p}{)))} \PYG{p}{\PYGZob{}}
+                    \PYG{n}{metaData}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{line}\PYG{p}{);}
+                \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{k+kt}{string}\PYG{p}{.}\PYG{n}{IsNullOrWhiteSpace}\PYG{p}{(}\PYG{n}{line}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+                    \PYG{n}{type} \PYG{p}{=} \PYG{l+s}{\PYGZdq{}mapping\PYGZdq{}}\PYG{p}{;}
+                \PYG{p}{\PYGZcb{}}
+                \PYG{k}{break}\PYG{p}{;}
+
+            \PYG{k}{case} \PYG{l+s}{\PYGZdq{}mapping\PYGZdq{}}\PYG{p}{:}
+                \PYG{k}{if} \PYG{p}{(!(}\PYG{k+kt}{string}\PYG{p}{.}\PYG{n}{IsNullOrWhiteSpace}\PYG{p}{(}\PYG{n}{line}\PYG{p}{))}
+                \PYG{p}{\PYGZam{}\PYGZam{}} \PYG{p}{!(}\PYG{n}{line}\PYG{p}{.}\PYG{n}{Contains}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Customer:\PYGZdq{}}\PYG{p}{)))} \PYG{p}{\PYGZob{}}
+                    \PYG{n}{mapping}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{line}\PYG{p}{);}
+                \PYG{p}{\PYGZcb{}}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{line}\PYG{p}{.}\PYG{n}{Contains}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Customer:\PYGZdq{}}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+                    \PYG{n}{customer}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{line}\PYG{p}{);}
+                    \PYG{n}{type} \PYG{p}{=} \PYG{l+s}{\PYGZdq{}customer\PYGZdq{}}\PYG{p}{;}
+                \PYG{p}{\PYGZcb{}}
+                \PYG{k}{break}\PYG{p}{;}
+
+            \PYG{k}{case} \PYG{l+s}{\PYGZdq{}customer\PYGZdq{}}\PYG{p}{:}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{line}\PYG{p}{.}\PYG{n}{Contains}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Customer:\PYGZdq{}}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+                    \PYG{n}{customer}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{line}\PYG{p}{);}
+                \PYG{p}{\PYGZcb{}}
+                \PYG{k}{break}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

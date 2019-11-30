@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{foreach} \PYG{p}{(}\PYG{k+kt}{var} \PYG{n}{line} \PYG{k}{in} \PYG{n}{levelLines}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+
+    \PYG{k}{foreach} \PYG{p}{(}\PYG{k+kt}{char} \PYG{n}{c} \PYG{k}{in} \PYG{n}{line}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+
+        \PYG{c+c1}{// Do not store whitespace or \PYGZdq{}next level\PYGZdq{} characters}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{c} \PYG{p}{!=} \PYG{l+s+sc}{\PYGZsq{} \PYGZsq{}} \PYG{p}{\PYGZam{}\PYGZam{}} \PYG{n}{c} \PYG{p}{!=} \PYG{l+s+sc}{\PYGZsq{}\PYGZca{}\PYGZsq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+
+            \PYG{c+c1}{// Store plyer position}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{c} \PYG{p}{==} \PYG{l+s+sc}{\PYGZsq{}\PYGZgt{}\PYGZsq{}} \PYG{p}{||} \PYG{n}{c} \PYG{p}{==} \PYG{l+s+sc}{\PYGZsq{}\PYGZlt{}\PYGZsq{}}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{n}{PlayerPosition} \PYG{p}{=} \PYG{k}{new} \PYG{n}{Vec2F}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+
+                \PYG{c+c1}{// Create the shape objects}
+                \PYG{n}{Image} \PYG{n}{img} \PYG{p}{=} \PYG{n}{asciiToImage}\PYG{p}{[}\PYG{n}{c}\PYG{p}{];}
+                \PYG{n}{StationaryShape} \PYG{n}{shape} \PYG{p}{=} \PYG{k}{new} \PYG{n}{StationaryShape}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{p}{(}\PYG{l+m}{1.0f}\PYG{p}{/}\PYG{n}{lvlWidth}\PYG{p}{),} \PYG{p}{(}\PYG{l+m}{1.0f}\PYG{p}{/}\PYG{n}{lvlHeight}\PYG{p}{));}
+
+                \PYG{c+c1}{// Determine which type it is, platform or obstacles}
+                \PYG{k}{if} \PYG{p}{(}\PYG{n}{platformChar}\PYG{p}{.}\PYG{n}{Contains}\PYG{p}{(}\PYG{n}{c}\PYG{p}{))} \PYG{p}{\PYGZob{}}
+                    \PYG{n}{platforms}\PYG{p}{.}\PYG{n}{AddStationaryEntity}\PYG{p}{(}\PYG{n}{shape}\PYG{p}{,} \PYG{n}{img}\PYG{p}{);}
+                \PYG{p}{\PYGZcb{}} \PYG{k}{else} \PYG{p}{\PYGZob{}}
+                    \PYG{n}{obstacles}\PYG{p}{.}\PYG{n}{AddStationaryEntity}\PYG{p}{(}\PYG{n}{shape}\PYG{p}{,} \PYG{n}{img}\PYG{p}{);}
+                \PYG{p}{\PYGZcb{}}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+        \PYG{n}{x} \PYG{p}{+=} \PYG{p}{(}\PYG{l+m}{1.0f}\PYG{p}{/}\PYG{n}{lvlWidth}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{n}{x} \PYG{p}{=} \PYG{l+m}{0}\PYG{p}{;}
+    \PYG{n}{y} \PYG{p}{\PYGZhy{}=} \PYG{p}{(}\PYG{l+m}{1.0f}\PYG{p}{/}\PYG{n}{lvlHeight}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

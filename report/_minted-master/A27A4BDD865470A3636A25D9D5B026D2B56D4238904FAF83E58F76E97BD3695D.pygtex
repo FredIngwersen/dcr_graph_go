@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{private} \PYG{k}{void} \PYG{n+nf}{MapPlatform}\PYG{p}{(}\PYG{n}{List}\PYG{p}{\PYGZlt{}}\PYG{k+kt}{string}\PYG{p}{\PYGZgt{}} \PYG{n}{metaData}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+
+            \PYG{k}{try} \PYG{p}{\PYGZob{}}
+                \PYG{k+kt}{string}\PYG{p}{[]} \PYG{n}{arr} \PYG{p}{=} \PYG{n}{metaData}\PYG{p}{[}\PYG{l+m}{1}\PYG{p}{].}\PYG{n}{Split}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}:\PYGZsq{}}\PYG{p}{);}
+
+                \PYG{k+kt}{string} \PYG{n}{str} \PYG{p}{=} \PYG{n}{arr}\PYG{p}{[}\PYG{l+m}{1}\PYG{p}{].}\PYG{n}{Replace}\PYG{p}{(}\PYG{l+s}{\PYGZdq{} \PYGZdq{}}\PYG{p}{,} \PYG{n}{String}\PYG{p}{.}\PYG{n}{Empty}\PYG{p}{);}
+                \PYG{n}{arr} \PYG{p}{=} \PYG{n}{str}\PYG{p}{.}\PYG{n}{Split}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{},\PYGZsq{}}\PYG{p}{);}
+
+                \PYG{k}{foreach} \PYG{p}{(}\PYG{k+kt}{var} \PYG{n}{c} \PYG{k}{in} \PYG{n}{arr}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                    \PYG{n}{platformChar}\PYG{p}{.}\PYG{n}{Add}\PYG{p}{(}\PYG{n}{c}\PYG{p}{[}\PYG{l+m}{0}\PYG{p}{]);}
+                \PYG{p}{\PYGZcb{}}
+
+            \PYG{p}{\PYGZcb{}} \PYG{k}{catch} \PYG{p}{(}\PYG{n}{IndexOutOfRangeException} \PYG{n}{e}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{n}{Console}\PYG{p}{.}\PYG{n}{WriteLine}\PYG{p}{(}\PYG{n}{e}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+        \PYG{p}{\PYGZcb{}}
+\end{Verbatim}

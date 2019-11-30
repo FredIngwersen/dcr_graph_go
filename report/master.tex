@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[danish, english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage[title]{appendix}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{algorithm}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{pdfpages}
+\usepackage{minted}
+\usepackage[noend]{algpseudocode}
+\usepackage[all]{hypcap}
+\usepackage[parfill]{parskip}
+\usepackage{geometry}
+\graphicspath{ {images/} }
+\usepackage{tikz}
+\usepackage{minted}
+\usetikzlibrary{arrows}
+\geometry{
+  a4paper,
+  total={170mm,257mm},
+  left=30mm,
+  right=30mm,
+  top=25mm,
+  bottom=30mm,
+}
+
+\cfoot{\thepage}
+
+% input a preamble from a separate file
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+\includepdf[pages=-]{frontpage/report.pdf}
+\thispagestyle{empty} % no header and footer
+\clearpage
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\input{sections/model_description.tex}
+\input{sections/DCR_engine.tex}
+\input{sections/proof.tex}
+
+\end{document}
