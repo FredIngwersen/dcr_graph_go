@@ -2,11 +2,14 @@
 
 CC=go
 
-standard: run 
+standard: run
 
 build:
 	go build DCR_graph.go DCR_structs.go get_log.go
 
-run: 
+run:
 	go build DCR_graph.go DCR_structs.go get_log.go
 	./DCR_graph
+test:
+	go build test.go get_log.go
+	./test

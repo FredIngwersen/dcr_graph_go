@@ -151,15 +151,18 @@ func execute(graph DCR_graph, event string) DCR_graph{
     if(!string_slice_contains(result.Executed, event)){
         result.Executed = append(result.Executed, event)
     }
+    fmt.Println(result.Executed)
 
     index_to_delete := find_index(result.Pending, event)
     if(index_to_delete != -1){
         result.Pending = remove_index(result.Pending, index_to_delete)
     }
 
-    result.Pending =
-        append(result.Pending, graph.responses_to.constraint_map[event]...)
-
+    for _, event := range graph.responses_to.constraint_map[event]{
+        if(!string_slice_contains(result.Pending, event)){
+            result.Pending = append(result.Pending, event)
+        }
+    }
     result.Included =
         remove_all_excluded(graph.excludes_to, result.Included, event)
 
