@@ -5,8 +5,8 @@ CC=go
 standard: run 
 
 build:
-	go build DCR_graph.go DCR_structs.go get_log.go
+	go build main.go DCR_interface.go DCR_structs.go helper_functions.go get_log.go
 
 run: 
-	go build DCR_graph.go DCR_structs.go get_log.go
+	go build main.go DCR_interface.go DCR_structs.go helper_functions.go get_log.go
 	./DCR_graph
