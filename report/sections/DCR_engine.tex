@@ -8,4 +8,11 @@ We decided to write our own DCR engine with Go.
 \subsection*{XML Format}
 
 \subsection*{Conformance Checker}
+To check how a graph satisfies a trace we compile a set of all legal events
+with the current marking of the graph. If the event is included in the set of legal
+events the event is executed and the marking is updated. This process is repeated
+every event in the trace. If any event is not in legal events is the trace not
+satisfied. If every event is executed the set of pending events if check and if no
+events are pending the trace the graph is concluded to satisfied the trace.
+
 \subsubsection*{Tests}
