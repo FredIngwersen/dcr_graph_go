@@ -1,11 +1,71 @@
 \section*{Engine}
+We decided to write our own DCR engine with Go. The reason for this was largely due to the fact
+that we wanted to learn more about the intricacies of working with the DCR graphs to deepen our
+understanding, and, of course, to challenge ourselves a bit.
 
-\subsection*{Our own Engine}
-We decided to write our own DCR engine with Go.
+\subsubsection*{XML Format}
+First off, the input format; we created our own DCR graph input format, very much inspired by the
+XML output you get from downloading a graph from \textit{dcrgraphs.net}. 
+It is a simpler format where we start with an outer graph of type \textit{dcr} and move in from
+there. Beneath, a simple overview:
 
-\subsubsection*{Engine overview}
+\begin{itemize}
+    \item[--] \textbf{dcr} 
+    \begin{itemize}
+        \item[--] \textbf{events} 
+        \begin{itemize}
+            \item[--] \textbf{event 1} 
+        \end{itemize}	
+        \item[--] \textbf{constraints} 
+        \begin{itemize}
+            \item[--] \textbf{conditions} 
+            \item[--] \textbf{responses} 
+            \begin{itemize}
+                \item[--] \textbf{response 1} 
+            \end{itemize}	
+            \item[--] \textbf{corresponses} 
+            \item[--] \textbf{excludes} 
+            \item[--] \textbf{includes} 
+            \item[--] \textbf{milestones} 
+            \item[--] \textbf{spawns} 
+        \end{itemize}	
+        \item[--] \textbf{markings} 
+        \begin{itemize}
+            \item[--] \textbf{executed} 
+            \item[--] \textbf{included} 
+            \begin{itemize}
+                \item[--] \textbf{event 1} 
+            \end{itemize}	
+            \item[--] \textbf{pending} 
+        \end{itemize}	
+    \end{itemize}	
+\end{itemize}	
 
-\subsection*{XML Format}
+Now, we never implemented spawns, but they are within our format. One thing to note is that this
+format does not support nesting. Looking at the actual XML provided should make entries such as the
+response entry clear.
+
+\subsection*{Engine overview}
+The engine itself is fairly simple, consisting of three main files which make up the actual engine,
+two files to implement some helper functions for data handling and XML and a single file to
+execute. We will go over the three main files and omit the rest.
+
+\textbf{DCR\_structs.go} is a short file where we declare the structs we want to use. Some these
+structs are actually used to directly pick out information from the XML format we created
+ourselves. 
+
+\textbf{DCR\_interface.go} is where most of our engine is implemented. We define an interface
+called DCR and the methods it should implement. In Go, this works a bit differently than in OOP
+languages like C++ or Java; so, here, we just declare functions like so: \textit{func (struct)
+Method name return type}. The struct here is the struct we want to add this method to, once
+a struct has all methods of an interface, the interface is said to be implemented by the struct.
+The implementation is very much our own interpretation of the code shown in the slides, so we won't
+go into detail.
+
+\textbf{DCR\_functions.go} holds the helper functions, which did not make sense to put onto the
+struct of DCR\_graph. These functions are ones which act on something within the DCR\_graph struct,
+but not the entire data structure. They are used throughout the interface implementations, as well as in the
+\textbf{main.go} file to create the graphs from our XML files. 
 
 \subsection*{Conformance Checker}
 To check how a graph satisfies a trace we compile a set of all legal events

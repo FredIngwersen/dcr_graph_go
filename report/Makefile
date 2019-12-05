@@ -5,8 +5,7 @@ standard: report
 all: frontpage report
 
 report:
-	pdflatex -shell-escape master.tex
-	xdg-open master.pdf
+	pdflatex -shell-escape master.tex 
 
 frontpage:
 	cd frontpage && pdflatex report.tex
