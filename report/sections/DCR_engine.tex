@@ -16,3 +16,9 @@ satisfied. If every event is executed the set of pending events if check and if 
 events are pending the trace the graph is concluded to satisfied the trace.
 
 \subsubsection*{Tests}
+We tested the result by hardcoding the patterns and check is we get the same
+count of right and wrong traces. The specific of how each pattern is made can be
+seen in the file test.go. With the testing we found a mishandel cases in the way
+we handel pending relations. We found that at a event could be multiple times
+ind the pending set of the marking and only one was removed when that event was
+executed.
