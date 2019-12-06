@@ -5,41 +5,41 @@ understanding, and, of course, to challenge ourselves a bit.
 
 \subsubsection*{XML Format}
 First off, the input format; we created our own DCR graph input format, very much inspired by the
-XML output you get from downloading a graph from \textit{dcrgraphs.net}. 
+XML output you get from downloading a graph from \textit{dcrgraphs.net}.
 It is a simpler format where we start with an outer graph of type \textit{dcr} and move in from
 there. Beneath, a simple overview:
 
 \begin{itemize}
-    \item[--] \textbf{dcr} 
+    \item[--] \textbf{dcr}
     \begin{itemize}
-        \item[--] \textbf{events} 
+        \item[--] \textbf{events}
         \begin{itemize}
-            \item[--] \textbf{event 1} 
-        \end{itemize}	
-        \item[--] \textbf{constraints} 
+            \item[--] \textbf{event 1}
+        \end{itemize}
+        \item[--] \textbf{constraints}
         \begin{itemize}
-            \item[--] \textbf{conditions} 
-            \item[--] \textbf{responses} 
+            \item[--] \textbf{conditions}
+            \item[--] \textbf{responses}
             \begin{itemize}
-                \item[--] \textbf{response 1} 
-            \end{itemize}	
-            \item[--] \textbf{corresponses} 
-            \item[--] \textbf{excludes} 
-            \item[--] \textbf{includes} 
-            \item[--] \textbf{milestones} 
-            \item[--] \textbf{spawns} 
-        \end{itemize}	
-        \item[--] \textbf{markings} 
+                \item[--] \textbf{response 1}
+            \end{itemize}
+            \item[--] \textbf{corresponses}
+            \item[--] \textbf{excludes}
+            \item[--] \textbf{includes}
+            \item[--] \textbf{milestones}
+            \item[--] \textbf{spawns}
+        \end{itemize}
+        \item[--] \textbf{markings}
         \begin{itemize}
-            \item[--] \textbf{executed} 
-            \item[--] \textbf{included} 
+            \item[--] \textbf{executed}
+            \item[--] \textbf{included}
             \begin{itemize}
-                \item[--] \textbf{event 1} 
-            \end{itemize}	
-            \item[--] \textbf{pending} 
-        \end{itemize}	
-    \end{itemize}	
-\end{itemize}	
+                \item[--] \textbf{event 1}
+            \end{itemize}
+            \item[--] \textbf{pending}
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
 
 Now, we never implemented spawns, but they are within our format. One thing to note is that this
 format does not support nesting. Looking at the actual XML provided should make entries such as the
@@ -52,7 +52,7 @@ execute. We will go over the three main files and omit the rest.
 
 \textbf{DCR\_structs.go} is a short file where we declare the structs we want to use. Some these
 structs are actually used to directly pick out information from the XML format we created
-ourselves. 
+ourselves.
 
 \textbf{DCR\_interface.go} is where most of our engine is implemented. We define an interface
 called DCR and the methods it should implement. In Go, this works a bit differently than in OOP
@@ -65,20 +65,20 @@ go into detail.
 \textbf{DCR\_functions.go} holds the helper functions, which did not make sense to put onto the
 struct of DCR\_graph. These functions are ones which act on something within the DCR\_graph struct,
 but not the entire data structure. They are used throughout the interface implementations, as well as in the
-\textbf{main.go} file to create the graphs from our XML files. 
+\textbf{main.go} file to create the graphs from our XML files.
 
 \subsection*{Conformance Checker}
 To check how a graph satisfies a trace we compile a set of all legal events
 with the current marking of the graph. If the event is included in the set of legal
 events the event is executed and the marking is updated. This process is repeated
-every event in the trace. If any event is not in legal events is the trace not
+for every event in the trace. If any event wasn't in the legal set of events the trace was not
 satisfied. If every event is executed the set of pending events if check and if no
-events are pending the trace the graph is concluded to satisfied the trace.
+events are pending the graph is concluded to satisfied the trace.
 
 \subsubsection*{Tests}
-We tested the result by hardcoding the patterns and check is we get the same
+When we tested our results we did not have the result from Tijs.\\
+We tested the result by hardcoding the patterns and check if we got the same
 count of right and wrong traces. The specific of how each pattern is made can be
-seen in the file test.go. With the testing we found a mishandel cases in the way
-we handel pending relations. We found that at a event could be multiple times
-ind the pending set of the marking and only one was removed when that event was
-executed.
+seen in the file test.go. With the testing we found that we mishandel the way
+we handel pending relations. We found that a event could be multiple times
+ind the markings pending set and only one was removed with each execution.
