@@ -1,4 +1,4 @@
-.PHONY: standard all report frontpage cleanfrontpage cleanreport cleanall
+.PHONY: standard all report frontpage cleanfrontpage cleanreport cleanall open
 
 standard: report
 
@@ -18,3 +18,5 @@ clean:
 
 cleanall: cleanfrontpage cleanreport
 	rm master.pdf
+open: report
+	xdg-open master.pdf
